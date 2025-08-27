@@ -60,7 +60,7 @@ def activate_venv(file_name):
 def get_venv_python():
     return os.path.join(".venv", "Scripts", "python.exe") if system() == "Windows" else os.path.join(".venv", "bin", "python")
 
-def setup(file_name, version):
+def run(file_name, version):
     global python_executable
 
     if not check_if_pip_is_installed():
@@ -75,5 +75,5 @@ def setup(file_name, version):
     activate_venv(file_name)
 
 
-if __name__ == "__main__":
-    setup(file_name="main.py", version=3.13)
+# if __name__ == "__main__":
+#     setup(file_name="main.py", version=3.13)
