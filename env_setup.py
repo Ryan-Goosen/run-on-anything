@@ -29,28 +29,38 @@ def install_uv():
     print("\nUV has been installed.")
 
 def create_venv(version):
-    subprocess.run([executable,"-m","uv", "venv", ".venv", f"--python={version}"], check=True)
+    subprocess.run([executable, "-m", "uv", "venv", ".venv"], check=True)
     print('\nVirtual Environment Created.')
+
+# def install_dependencies():
+#     req_file = "requirements.txt"
+#     if os.path.exists(req_file):
+#         print("Installing dependencies from requirements.txt...")
+#         venv_python = get_venv_python()
+#         print(venv_python)
+#         subprocess.run([venv_python, "-m", "pip", "install", "-r", req_file], check=True)
+#     else:
+#         print("No requirements.txt found. Continuing without installing packages.")
 
 def install_dependencies():
     req_file = "requirements.txt"
     pp_file = "pyproject.toml"
     lock_file = "uv.lock"
     try:
-        if os.path.exists(pp_file):
-            print("Found pyproject.toml.")
-            if os.path.exists(lock_file):
-                print("Found uv.lock. Installing from lockfile...")
-                subprocess.run(["uv", "pip", "sync"], check=True)
-            else:
-                print("No lockfile found. Installing from pyproject.toml...")
-                subprocess.run(["uv", "pip", "install"], check=True)
+        # if os.path.exists(pp_file):
+        #     print("Found pyproject.toml.")
+        #     if os.path.exists(lock_file):
+        #         print("Found uv.lock. Installing from lockfile...")
+        #         subprocess.run(["uv", "pip", "sync", lock_file], check=True)
+        #     else:
+        #         print("No lockfile found. Installing from pyproject.toml...")
+        #         subprocess.run(["uv", "pip", "install"], check=True)
 
-        elif os.path.exists(req_file):
-            print("No pyproject.toml found. Falling back to requirements.txt...")
-            subprocess.run(["uv", "pip", "install", "-r", req_file], check=True)
-        else:
-            print("No dependency files found. Continuing without installing packages.")
+        # elif os.path.exists(req_file):
+        print("No pyproject.toml found. Falling back to requirements.txt...")
+        subprocess.run(["uv", "pip", "install", "-r", req_file], check=True)
+        # else:
+        #     print("No dependency files found. Continuing without installing packages.")
     except subprocess.CalledProcessError as e:
         print(f"Dependencies installation failed: {e}")
 
@@ -75,5 +85,5 @@ def run(file_name, version):
     activate_venv(file_name)
 
 
-# if __name__ == "__main__":
-#     setup(file_name="main.py", version=3.13)
+if __name__ == "__main__":
+    run(file_name="main.py", version=3.13)
