@@ -1,7 +1,0 @@
-LICENSE
-env_setup.py
-setup.py
-env_setup.egg-info/PKG-INFO
-env_setup.egg-info/SOURCES.txt
-env_setup.egg-info/dependency_links.txt
-env_setup.egg-info/top_level.txt
